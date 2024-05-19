@@ -1,0 +1,73 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+set separator none
+left to right direction
+skin rose
+
+package cl.ucn.disc.poo.oasisrallhub {
+ package model {
+   Class Tren {
+     -identificador: int
+     -ruta: String
+     -precio: int
+     -descripcion: String
+     -funcionamiento: boolean
+     --
+     + Tren(identificador: int, ruta: String, precio: int, descripcion: String, funcionamiento: Boolean)
+     + getIdentificador(): int
+     + getRuta(): String
+     + getPrecio(): int
+     + getDescripcion(): String
+     + isFuncionamiento(): boolean
+     + setFuncionamiento(): boolean
+   }
+
+   Class Trabajador {
+     -nombreCompleto: String
+     -cargo: String
+     -salario: int
+     -experiencia: int
+     --
+     + Trabajador(nombreCompleto: String, cargo: String, salario: int, experiencia: int)
+     + getNombreCompleto(): String
+     + getCargo(): String
+     + getSalario(): int
+     + getExperiencia(): int
+   }
+
+   Class Viaje {
+     -ubicacion: String
+     -funcionamiento: String
+     -trenMasBarato: String
+     --
+     + Viaje(ubicacion: String, funcionamiento: String, trenMasBarato: String)
+     + getUbicacion(): String
+     + getFuncionamiento(): String
+     + getTrenMasBarato(): String
+   }
+}
+package services {
+   Class SistemaImpl {
+      + SistemaImpl()
+      - trenesInactivos: int
+      - totalTrenes: int
+      - sumaPrecios: int
+      - sumaPreciosRutaA : int
+      - sumaPreciosRutaB : int
+      - sumaPreciosRutaC : int
+      - sumaPreciosRutaD : int
+   }
+   interface Sistema <<interface>> {
+       + agregarTren(Tren trenes)
+       + agregarTrabajador(Trabajador trabajadores)
+       + actualizarFuncionamiento(identificador: String, funcionamiento: boolean)
+       + porcentageTrenesInactivos()
+       + promedioPreciototal()
+       + sumaPreciosRuta()
+   }
+   SistemaImpl..|> Sistema: <<implements>>
+   SistemaImpl o--> "*"Tren: -trenes: set<Tren>
+   SistemaImpl o--> "*"Trabajador: -trabajadores: set<Trabajador>
+}
+@enduml

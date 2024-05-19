@@ -1,0 +1,26 @@
+@startuml
+ left to right direction
+skin rose
+
+ entity Tren {
+   Identificador del tren
+   Ruta
+   Precio del Boleto
+   Descripcion
+   Funcionamiento o no
+ }
+ entity Trabajador {
+   Nombre completo
+   Cargo
+   Saliario
+   Experiencia
+ }
+ entity Viaje {
+   Ubicacion
+   funcionamiento
+   Tren mas barato
+ }
+ Trabajador"1..*" -- "1..*"Tren :> manipular
+ Tren"1..*" -- "0..*"Viaje:> ejecutar
+
+ @enduml
